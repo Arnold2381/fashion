@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/simulator.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Chilanka&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="head" class="header"><text id="header">FASHIONOPOLIS</text></div>
+    <div class="content">
+        <div style="text-align: center;font-size: xxx-large;font-weight: bold;font-family: 'Chilanka', cursive;">SIMULATOR</div>
+        <div style="text-align: center;font-size: 40px;font-family: 'Cormorant Garamond',serif;margin-top: 20px;">Colour</div>
+        <div style="text-align: center;margin-top: 10px;">
+            <button style="background-color: rgb(255,255,255);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(255,255,255)')"></button>
+            <button style="background-color: rgb(0, 0, 0);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(0, 0, 0)')"></button>
+            <button style="background-color: rgb(239, 247, 60);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(239, 247, 60)')"></button>
+            <button style="background-color: rgb(146, 38, 70);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(146, 38, 70)')"></button>
+            <button style="background-color: rgb(248, 144, 55);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(248, 144, 55)')"></button>
+            <button style="background-color: rgb(94, 5, 49);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(94, 5, 49)')"></button>
+            <button style="background-color: rgb(84, 55, 116);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(84, 55, 116)')"></button>
+            <button style="background-color: rgb(62, 169, 89);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(62, 169, 89)')"></button>
+            <button style="background-color: rgb(15, 124, 164);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(15, 124, 164)')"></button>
+            <button style="background-color: rgb(234, 144, 196);width: 40px;height: 40px;margin-left: 10px;margin-right: 10px;border-width: 3px;border-radius: 100%;" onclick="design('rgb(234, 144, 196)')"></button>
+        </div>
+        <div style="text-align: center;font-size: 40px;font-family: 'Cormorant Garamond',serif;margin-top: 20px;">Pattern</div>
+        <div style="text-align: center;margin-top: 10px;">
+            <select name="Pattern" id="dropdown">
+                <option value="flowers">Flowers</option>
+                <option value="deathByRoses">Death by roses</option>
+                <option value="convoluted">Convoluted</option>
+                <option value="tapestry">Tapestry</option>
+                <option value="fluidOrange">Fluid Orange</option>
+                <option value="abstractGeometric">Abstract Geometric</option>
+                <option value="fluid">Fluid</option>
+                <option value="maths">Maths</option>
+                <option value="dunesCartoony">Dunes Cartoony</option>
+                <option value="tigerSkin">Tiger</option>
+            </select>    
+            <div style="margin-top: 4px;"><button id= "text"><text style="font-size: large;font-weight: bold;color: white;font-family: sans-serif;" onclick="pat()">APPLY</text></button></div>
+        </div>
+        <div style="text-align: center;font-size: 40px;font-family: 'Cormorant Garamond',serif;margin-top: 20px;">Sleeve Length</div>
+        <div style="text-align: center;margin-top: 10px;">
+            <select name="Pattern" id="sleeve">
+                <option value="sim">Half-Sleeves</option>
+                <option value="full">Full Sleeves</option>
+            </select>    
+            <div style="margin-top: 4px;"><button id= "text"><text style="font-size: large;font-weight: bold;color: white;font-family: sans-serif;" onclick="sleeve_fun()">APPLY</text></button></div>
+        </div>
+        <div style="text-align: center;font-size: 40px;font-family: 'Cormorant Garamond',serif;margin-top: 20px;">Text</div>
+        <div style="text-align: center;margin-top: 10px;">
+            <textarea id="print" style="border-radius: 10px;border-color: #444344;border-width: 2px;;width: 20%;resize: none;font-family:Nixie One,cursive;font-size:20px;font-weight: bold;height: 30px;text-align: center;  background-color:rgba(220,220,220,0.6);"></textarea>
+            <div><button id= "text"><text style="font-size: large;font-weight: bold;color: white;font-family: sans-serif;" onclick="add()">ADD</text></button></div>
+        </div>
+        <div id="mydiv" style="text-align: center;height:30px;width: 99%;">
+            <div id="mydivheader" style="font-family: sans-serif;font-size:25px;font-weight: bold;height: 30px;"></div>
+        </div>
+        <div id="design" style="margin-left: 24.5%;margin-top: 70px;background-color: white;">
+            <img id="pic" src="/static/stylesheets/pics/sim.png" style="width: 750px;height: 750px;"></img>
+        </div>
+    </div>
+    <script>
+        var dict = {
+            'flowers': "https://image.freepik.com/free-vector/beautiful-floral-pattern_23-2148607070.jpg",
+            'deathByRoses' : "https://image.freepik.com/free-vector/vintage-day-dead-seamless-pattern_225004-1283.jpg",
+            'convoluted': "https://image.freepik.com/free-vector/black-white-hypnotic-background-abstract-seamless-pattern-illustration_118124-3765.jpg",
+            'tapestry': "https://image.freepik.com/free-vector/luxury-ornamental-mandala-pattern_1159-14045.jpg",
+            'dunesCartoony': "https://image.freepik.com/free-vector/hand-drawn-abstract-seamless-patterns_134878-95.jpg",
+            'fluidOrange' : "https://image.freepik.com/free-vector/minimal-colorful-pattern-with-curvy-lines-background_1035-17332.jpg",
+            'abstractGeometric' : "https://as2.ftcdn.net/jpg/01/07/48/97/500_F_107489700_AJ51smlRs7b9CO21e9n8gCoNzPxgnYRn.jpg",
+            'fluid' : "https://image.freepik.com/free-vector/minimal-colorful-pattern-with-curvy-lines-background_1035-17333.jpg",
+            'maths' : "https://image.freepik.com/free-vector/memphis-pattern_1045-810.jpg",
+            'tigerSkin': "https://www.scienceworld.ca/wp-content/uploads/science-world-numbers-in-nature-patterns-stripes-spots-turing-scaled.jpg"
+        };
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+        // Get the header
+        var header = document.getElementById("head");
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } 
+            else {
+                header.classList.remove("sticky");
+            }
+        }
+        var data = document.getElementById('print')
+        function add(){
+            document.getElementById('mydivheader').innerText=data.value
+            data.value=''
+        }
+        function sleeve_fun(){
+            var pic=document.getElementById('pic')
+            pic.src="/static/stylesheets/pics/"+document.getElementById('sleeve').value+".png"
+        }
+        function pat(){
+            console.log('a')
+            var id=document.getElementById('design')
+            id.style.backgroundImage='url("'+dict[document.getElementById('dropdown').value]+'")'
+        }
+        function design(str){
+            var id=document.getElementById('design')
+            id.style.backgroundImage=""
+            id.style.backgroundColor=str
+        }
+        dragElement(document.getElementById("mydiv"));
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id + "header")) {
+                /* if present, the header is where you move the DIV from:*/
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            } else {
+                /* otherwise, move the DIV from anywhere inside the DIV:*/
+                elmnt.onmousedown = dragMouseDown;
+            }
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+</html>

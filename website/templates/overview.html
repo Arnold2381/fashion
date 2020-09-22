@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/overview.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="head" class="header"><text id="header">FASHIONOPOLIS</text></div>
+    <div style="margin-top: 130px;text-align:center;">
+        <label  style="font-size: 30px;font-family: sans-serif;">E-commerce Site:</label>
+        <text style="margin-left:5px;font-size: 30px;font-weight: bold;font-family: Nixie One,cursive;color:#9c0e52">{{site}}</text>
+        <label  style="margin-left:150px;font-size: 30px;font-family: sans-serif;">Fashion Portal:</label>
+        <text style="margin-left:5px;font-size: 30px;font-weight: bold;font-family: Nixie One,cursive;color:#9c0e52">{{portal}}</text>
+        <label  style="margin-left:150px;font-size: 30px;font-family: sans-serif;">Garment:</label>
+        <text style="margin-left:5px;font-size: 30px;font-weight: bold;font-family: Nixie One,cursive;color:#9c0e52">{{garment}}</text>
+    </div>
+    <form method="POST">
+        <div style="margin-left: 210px">
+            <select name="type"  type="text"  id="dropdown" style="margin-left: 330px;" >
+                <option value="Trend" >Trending</option>
+                <option value="Lag">Lagging</option>
+                <option value="Best">Best Sellers</option>
+                <option value="Upcoming">Upcoming Trends</option>
+            </select>
+            <button id="view"><text style="font-size: large;font-weight: bold;color: white;font-family: sans-serif;">VIEW</text></button>   
+        </div>
+    </form>
+    <div style="margin-top: 20px;">
+        <div id="pics" style="display: inline-block;">
+            <div>
+                <text style="font-size: large;font-weight: bold;font-family: sans-serif;margin-left: 5px;">Trending</text>
+            </div>
+            <div>
+                <img src={{url_trend[0][1]}} id="image">
+                <img src={{url_trend[0][2]}} id="image">
+            </div>
+        </div>
+        <div id="pics" style="display: inline-block;">
+            <div>
+                <text style="font-size: large;font-weight: bold;font-family: sans-serif;margin-left: 5px;">Lagging</text>
+            </div>
+            <div>
+                <img src="{{url_lag[0][1]}}" id="image">
+                <img src="{{url_lag[0][2]}}" id="image">
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="pics1" style="display: block;">
+            <div>
+                <text style="font-size: large;font-weight: bold;font-family: sans-serif;margin-left: 5px;">Best Sellers</text>
+            </div>
+            <div>
+                <img src="{{best[0]}}" id="image">
+                <img src="{{best[1]}}" id="image">
+                <img src="{{best[2]}}" id="image">
+                <img src="{{best[3]}}" id="image">
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="pics1" style="display: block;">
+            <div style="text-align: center">
+                <text style="font-size: large;font-weight: bold;font-family: sans-serif;">Upcoming Trends</text>
+            </div>
+            <div style="text-align:center">
+                <img src="{{images[0][0]}}" id="image">
+            </div>
+        </div>
+    </div>
+    <script>
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+        // Get the header
+        var header = document.getElementById("head");
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } 
+            else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</body>
+</html>

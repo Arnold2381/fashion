@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/portals.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="head" class="header"><text id="header">FASHIONOPOLIS</text></div>
+    <div style="margin-top: 130px;">
+        <label  style="margin-left:100px;font-size: 40px;font-family: sans-serif;">Fashion Portal:</label>
+        <text style="margin-left:5px;font-size: 40px;font-weight: bold;font-family: Nixie One,cursive;color:#9c0e52">{{portal}}</text>
+        <label  style="margin-left:300px;font-size: 40px;font-family: sans-serif;">Garment:</label>
+        <text style="margin-left:5px;font-size: 40px;font-weight: bold;font-family: Nixie One,cursive;color:#9c0e52">{{garment}}</text>
+    </div>
+    <div class="content" style="margin-top: 30px;margin-bottom: 30px;">
+        <text style="font-size: 30px;font-family: sans-serif;margin-left: 30px;">UPCOMING TRENDS</text>
+    </div>
+    {%for i in range(len)%}
+        <div>
+            <text style="font-size: 25px;font-family: sans-serif;margin-left: 80px;">Result </text>
+            <text style="font-size: 25px;font-family: sans-serif;">{{i+1}}</text>
+        </div>
+        <div style="margin-bottom: 15px;margin-top: 30px;text-align: center;"><text style="font-size: 23px;font-family: 'Josefin Sans', sans-serif;font-weight: bold;">ATTRIBUTES</text></div>
+        <div style="text-align: center;">
+            {%for j in range(len1[i])%}
+                <text style="font-size: 20px;font-family: sans-serif;margin-right: 10px;line-height: 30px;">{{filters[i][j]}}</text>
+                {%for k in entities[i][j]%}
+                    <text style="font-size: 20px;font-family: 'Recursive', sans-serif;color:#9c0e52;margin-left: 10px;">{{k}}</text>
+                {%endfor%}
+                <br>
+            {%endfor%}
+        </div>
+        <div style="margin-bottom: 15px;margin-top: 30px;text-align: center;"><text style="font-size: 23px;font-family: 'Josefin Sans', sans-serif;font-weight: bold;">DESIGNS</text></div>
+        <div style="text-align:center;margin-bottom: 30px">
+            {%for j in images[i]%}
+                <a href="{{j}}" download><img id="image" src="{{j}}"></a>
+            {%endfor%}
+        </div>
+    {%endfor%}
+    <script>
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+        // Get the header
+        var header = document.getElementById("head");
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } 
+            else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</body>
+</html>

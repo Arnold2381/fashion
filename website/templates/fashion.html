@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/fashion.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="head" class="header"><text id="header">FASHIONOPOLIS</text></div>
+    <div class="content">    
+        <form method="post">
+            <label  style="margin-left: 330px;margin-top: 130px;font-size: xx-large;font-weight: bolder;font-family: 'Cormorant Garamond',serif;">E-commerce Site</label>
+            <text style="margin-left: 66px;margin-top: 130px;font-size: xx-large;font-weight: bolder;font-family: 'Cormorant Garamond',serif;">Fashion Portals</text>
+            <text style="margin-left: 115px;margin-top: 130px;font-size: xx-large;font-weight: bolder;font-family: 'Cormorant Garamond',serif;">Garment</text>
+            <div>
+                <select name="site"  type="text"  id="dropdown" style="margin-left: 310px;" >
+                <option value="Koovs" >Koovs</option>
+                <option value="Paytm-Mall">Paytm Mall</option>
+                </select>
+                <select name="portal" id="dropdown" style="margin-left: 20px;">
+                <option value="Vogue">Vogue</option>
+                <option value="Esquire">Esquire</option>
+                </select>
+                <select name="garment" id="dropdown" style="margin-left: 20px;">
+                    <option value="T-shirt">T-shirt</option>
+                    <option value="Shirt">Shirt</option>
+                    <option value="Sneakers">Sneakers</option>
+                    <option value="Skirt">Skirt</option>
+                    <option value="Jeans">Jeans</option>
+                </select>
+            </div>
+            <button id="search" style="margin-top: 30px;"><text style="font-size: large;font-weight: bold;color: white;font-family: sans-serif;" onclick=loading()>SEARCH</text></button>  
+        </form>
+            <form action='/simulator/' method='POST'>
+                <button type=submit id="search" style="width: 130px;margin-left: 45%;margin-top: 20px;"><text style="font-size: large;font-weight: bold;color: white;font-family: sans-serif;">SIMULATOR</text></button>
+            </form>
+            <div id="load" style="display:none;background-color: rgba(255,255, 255, 0.8);margin-left: 40%;margin-top: 3%;padding: 10px;width:255px">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ab79a231234507.564a1d23814ef.gif">
+            </div>
+        <div id='chat' style="text-align: center;display: none;">
+            <textarea readonly id="reply" style="font-size:20px;margin-top:20px;resize:none;background-color:rgb(255,255,255,0.9);font-family:Nixie One,cursive;color:rgb(71,0,34);width:550px;height:250px;border-radius: 10px;border-width: 2px;border-color: #9c0e52"></textarea>
+            <br><textarea id="print" style="color:rgb(71,0,34);border-radius:10px;background-color:rgb(255,255,255,0.9);width: 20%;resize: none;border-width: 2px;font-family:Nixie One,cursive;font-size:20px;height: 30px;text-align: center;border-color: #444344;font-weight: bold;"></textarea>
+            <div><button id="text"><text style="font-size: large;font-weight: bold;color: white;font-family: sans-serif;" onclick="add()">ENTER</text></button></div>
+        </div>
+        <div id="symbol" style="margin-top: 320px;">
+            <input type="image" id="icon" style="margin-left: 100px;" src="static/stylesheets/pics/chatbot.png" width="100" height="100" onclick="chat()">
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script>
+        var message;
+        var flag=0
+        var reply=document.getElementById('reply')
+        var division= document.getElementById('chat')
+        var print=document.getElementById('print')
+        var icon = document.getElementById('icon')
+        function loading(){
+            document.getElementById('load').style.display="block"
+        }
+        function chat(){
+            icon.style.display='none'
+            division.style.display='block'
+            reply.value="Hi this is Farishta. Your Fashion guide. I am here to help you.\n\nEnter your city and target age below (City Age)..."
+            reply.scrollTo(0,outerHeight)
+        }
+        function pr(k){
+           reply.value+='\n\n'+k;
+           reply.value+='\n\n';
+           reply.scrollTo(0,outerHeight)
+           print.value=""
+           again()
+        }
+        function again(){
+            reply.value+="Do you want to check for more cases. If yes I am happy to help you :) Please Enter your next city and target age below (City Age)... "
+            reply.value+='\nIf that\'s all for now enter "Bye". But I will be here for you.' 
+            reply.scrollTo(0,outerHeight)
+        }
+        function add(){
+            reply.value+='\n'+print.value
+            reply.scrollTo(0,outerHeight)
+            message=print.value
+            if(((message).toString())==('Bye')){
+                reply.value=""
+                print.value=""
+                division.style.display="none"
+                icon.style.display="block"
+            }
+        }
+        $(function(){
+            $('#text').bind('click',function(){
+                $.getJSON('/getd/'+message,function(data){pr(data.r)});
+            });
+        });
+
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+        // Get the header
+        var header = document.getElementById("head");
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } 
+            else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/best_sellers.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="head" class="header"><text id="header">FASHIONOPOLIS</text></div>
+    <div style="margin-top: 130px;">
+        <label  style="margin-left:100px;font-size: 40px;font-family: sans-serif;">E-commerce Site:</label>
+        <text style="margin-left:5px;font-size: 40px;font-weight: bold;font-family: Nixie One,cursive;color:#9c0e52">{{site}}</text>
+        <label  style="margin-left:300px;font-size: 40px;font-family: sans-serif;">Garment:</label>
+        <text style="margin-left:5px;font-size: 40px;font-weight: bold;font-family: Nixie One,cursive;color:#9c0e52">{{garment}}</text>
+    </div>
+    <div class="content" style="margin-top: 30px;">
+        <text style="font-size: 30px;font-family: sans-serif;margin-left: 30px;">BEST SELLERS</text>
+    </div>
+    {%for i in range(len)%}
+    <table id="table" aria-colcount="5">
+        <tr>
+            <div style="margin-top: 30px;text-align: center;">
+                <label  style="font-size: 25px;font-family: sans-serif;text-align: center;">{{i+1}}</label>
+                <text style="margin-left:10px;font-size: 25px;font-family: 'Recursive', sans-serif;color:#9c0e52;">{{best_seller[i]}}</text>
+                <td><a href="{{url_best[i]}}" download><img src="{{url_best[i]}}" id="image"></a></td>
+            </div>
+        </tr>
+    </table>
+    {%endfor%}
+    <script>
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+        // Get the header
+        var header = document.getElementById("head");
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } 
+            else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</body>
+</html>
+
